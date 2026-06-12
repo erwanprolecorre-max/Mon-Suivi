@@ -1,0 +1,13 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mon Suivi</title>
+<style>body{font-family:Arial;margin:20px;background:#f5f5f5}h1{text-align:center}.c{background:#fff;padding:15px;border-radius:10px;max-width:600px;margin:auto}input,button{padding:10px}li{list-style:none;padding:8px}</style>
+</head><body><div class="c"><h1>Mon Suivi</h1>
+<p>Ajoute tes objectifs et coche-les chaque jour.</p>
+<input id="t"><button onclick="a()">Ajouter</button><ul id="l"></ul><p id="p"></p></div>
+<script>
+let d=JSON.parse(localStorage.g||"[]");
+function s(){localStorage.g=JSON.stringify(d);r()}
+function a(){let v=t.value.trim();if(!v)return;d.push({x:v,o:false});t.value="";s()}
+function c(i){d[i].o=!d[i].o;s()}
+function r(){l.innerHTML="";let ok=0;d.forEach((e,i)=>{if(e.o)ok++;l.innerHTML+=`<li><input type=checkbox ${e.o?"checked":""} onchange="c(${i})"> ${e.x}</li>`});p.innerText=`Progression : ${ok}/${d.length}`}
+r()
+</script></body></html>
